@@ -39,7 +39,7 @@ func (tc *MultiToken) Get(basename string) {
 	if basename == "" {
 		return
 	}
-	tc.getWk(basename).GetTok()
+	tc.getWk(basename).Get()
 }
 
 // TryGet attempts to get a token
@@ -54,7 +54,7 @@ func (tc *MultiToken) TryGet(basename string) bool {
 	// it returns true if it can give you a token
 	// false otherwise
 	//log.Printf("Token requested for \"%v\"\n", basename)
-	return tc.getWk(basename).TryGetTok()
+	return tc.getWk(basename).TryGet()
 }
 
 // Put returns the token after use
@@ -66,7 +66,7 @@ func (tc *MultiToken) Put(basename string) {
 	if !ok {
 		log.Fatal("Tried to put a token that doesn't exist", basename)
 	}
-	tc.getWk(basename).PutTok()
+	tc.getWk(basename).Put()
 }
 
 // TryPut alias to allow consustent naming

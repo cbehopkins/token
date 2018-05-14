@@ -8,9 +8,9 @@ import (
 
 func TestWorkToken0(t *testing.T) {
 	wt := NewWkTok(10)
-	wt.GetTok()
+	wt.Get()
 	log.Println("Got")
-	wt.PutTok()
+	wt.Put()
 	log.Println("Put")
 	log.Println("Waiting")
 	wt.Wait()
@@ -18,40 +18,40 @@ func TestWorkToken0(t *testing.T) {
 }
 func TestWorkToken1(t *testing.T) {
 	wt := NewWkTok(10)
-	wt.GetTok()
-	wt.PutTok()
+	wt.Get()
+	wt.Put()
 	log.Println("Waiting")
 	wt.Wait()
 }
 
 func TestWorkToken2(t *testing.T) {
 	wt := NewWkTok(10)
-	wt.GetTok()
+	wt.Get()
 	go func() {
 		<-time.After(1 * time.Second)
-		wt.PutTok()
+		wt.Put()
 	}()
 	log.Println("Waiting")
 	wt.Wait()
 }
 func TestWorkToken3(t *testing.T) {
 	wt := NewWkTok(2)
-	wt.GetTok()
+	wt.Get()
 	log.Println("Got")
-	wt.GetTok()
+	wt.Get()
 	log.Println("Got")
-	wt.PutTok()
+	wt.Put()
 	log.Println("Put")
-	wt.GetTok()
+	wt.Get()
 	log.Println("Got")
 	go func() {
 		<-time.After(1 * time.Second)
-		wt.PutTok()
+		wt.Put()
 		log.Println("Put")
 	}()
 	go func() {
 		<-time.After(2 * time.Second)
-		wt.PutTok()
+		wt.Put()
 		log.Println("Put")
 	}()
 	log.Println("Waiting")
@@ -59,23 +59,23 @@ func TestWorkToken3(t *testing.T) {
 }
 func TestWorkToken4(t *testing.T) {
 	wt := NewWkTok(2)
-	wt.GetTok()
+	wt.Get()
 	log.Println("Got")
-	wt.GetTok()
+	wt.Get()
 	log.Println("Got")
 	go func() {
 		<-time.After(1 * time.Second)
-		wt.PutTok()
+		wt.Put()
 		log.Println("Put")
 	}()
 	go func() {
 		<-time.After(2 * time.Second)
-		wt.PutTok()
+		wt.Put()
 		log.Println("Put")
 	}()
-	wt.GetTok()
+	wt.Get()
 	log.Println("Got")
-	wt.PutTok()
+	wt.Put()
 	log.Println("Put")
 	log.Println("Waiting")
 	wt.Wait()

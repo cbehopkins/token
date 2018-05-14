@@ -40,16 +40,16 @@ func (wt *WkTok) Wait() {
 	}
 }
 
-// GetTok waits until we get a token
-func (wt *WkTok) GetTok() {
+// Get waits until we get a token
+func (wt *WkTok) Get() {
 	wt.Lock()
 	wt.loopToken() // loop until we can increment
 	wt.cnt++
 	wt.Unlock()
 }
 
-// TryGetTok tries to get a token, returns true if suceeds
-func (wt *WkTok) TryGetTok() bool {
+// TryGet tries to get a token, returns true if suceeds
+func (wt *WkTok) TryGet() bool {
 	wt.Lock()
 	defer wt.Unlock()
 	if wt.qTok() {
@@ -59,13 +59,13 @@ func (wt *WkTok) TryGetTok() bool {
 	return false
 }
 
-// TryPutTok always succeeds
-func (wt *WkTok) TryPutTok() {
-	wt.PutTok()
+// TryPut always succeeds
+func (wt *WkTok) TryPut() {
+	wt.Put()
 }
 
-// PutTok says we have finished with the token, put it back
-func (wt *WkTok) PutTok() {
+// Put says we have finished with the token, put it back
+func (wt *WkTok) Put() {
 	wt.Lock()
 	wt.cnt--
 	// one of possibly many receivers will get this

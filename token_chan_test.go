@@ -8,7 +8,7 @@ import (
 	"time"
 )
 
-var useTestParallel = false
+var useTestParallel = true
 
 func TestTok0(t *testing.T) {
 	if useTestParallel {
